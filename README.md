@@ -1,14 +1,20 @@
 # Vector Map Style Profiler 🗺️📏🎨
 
+## Website
+
 The Vector Map Style Profiler is a tool that allows you to profile the performance of different vector map styles. It takes a [MapLibre style](https://maplibre.org/maplibre-style-spec/) as a input and displays timing information about how long it took to load and render the map on the page.
 
-## External Resources
+### External Resources
 
 The site depends on [MapLibre GL](https://github.com/maplibre/maplibre-gl-js) to draw the map on the page. The library is included in the site through a content delivery network (CDN) link.
 
-## Hosting
+### Hosting
 
 The Vector Map Style Profiler is hosted on GitHub Pages. You can access the app by visiting the following URL: [https://01100100.github.io/mapStyleProfile](https://01100100.github.io/mapStyleProfile).
+
+## Automated browser testing
+
+There is a python script that uses [playwright](https://playwright.dev/python/docs/intro) to automate browser testing for a number of different styles and prints the loading time of each style to the terminal.
 
 ## Contributions
 
