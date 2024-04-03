@@ -1,0 +1,31 @@
+name: Playwright Tests
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  playwright:
+    name: 'Playwright Tests'
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.42.0-jammy
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Run your tests
+        run: |
+          pip install -r requirements.txt
+          playwright install
+          python src/main.py
+      - name: Commit screenshots and timing results
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add screenshots/
+          git add timing_results.json
+          git commit -m "Add screenshots and timing results" || echo "No changes to commit"
+          git push
