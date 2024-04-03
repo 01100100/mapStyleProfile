@@ -57,6 +57,9 @@ STYLES = {
     "Geoapify - dark-matter-dark-purple": "https://maps.geoapify.com/v1/styles/dark-matter-dark-purple/style.json?apiKey={GEOAPIFY_API_KEY}",
     "Geoapify - dark-matter-purple-roads": "https://maps.geoapify.com/v1/styles/dark-matter-purple-roads/style.json?apiKey={GEOAPIFY_API_KEY}",
     "Geoapify - dark-matter-yellow-roads": "https://maps.geoapify.com/v1/styles/dark-matter-yellow-roads/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "MapLibre - World": "https://demotiles.maplibre.org/style.json",
+    "MapLibre - OpenMapTiles": "https://demotiles.maplibre.org/styles/osm-bright-gl-style/style.json",
+    "MapLibre - Terrain": "https://demotiles.maplibre.org/styles/osm-bright-gl-terrain/style.json",
 }
 
 
