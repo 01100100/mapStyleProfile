@@ -6,11 +6,16 @@ from playwright.async_api import async_playwright
 
 MAPTILER_API_KEY = os.environ.get("MAPTILER_API_KEY")
 STADIA_API_KEY = os.environ.get("STADIA_API_KEY")
+GEOAPIFY_API_KEY = os.environ.get("GEOAPIFY_API_KEY")
 
-if MAPTILER_API_KEY is None or STADIA_API_KEY is None:
-    raise ValueError(
-        "MAPTILER_API_KEY and STADIA_API_KEY environment variables must be set"
-    )
+if MAPTILER_API_KEY is None:
+    raise ValueError("MAPTILER_API_KEY environment variables must be set")
+
+if STADIA_API_KEY is None:
+    raise ValueError("STADIA_API_KEY environment variables must be set")
+
+if GEOAPIFY_API_KEY is None:
+    raise ValueError("GEOAPIFY_API_KEY environment variables must be set")
 
 STYLES = {
     "MapTiler - backdrop": "https://api.maptiler.com/maps/backdrop/style.json?key={MAPTILER_API_KEY}",
@@ -34,6 +39,24 @@ STYLES = {
     "StadiaMaps - Stamen Terrain": "https://tiles.stadiamaps.com/styles/stamen_terrain.json?api_key={STADIA_API_KEY}",
     "StadiaMaps - Stamen Watercolor": "https://tiles.stadiamaps.com/styles/stamen_watercolor.json?api_key={STADIA_API_KEY}",
     "StadiaMaps - OSM Bright": "https://tiles.stadiamaps.com/styles/osm_bright.json?api_key={STADIA_API_KEY}",
+    "Geoapify - osm-carto": "https://maps.geoapify.com/v1/styles/osm-carto/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - osm-bright": "https://maps.geoapify.com/v1/styles/osm-bright/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - osm-bright-grey": "https://maps.geoapify.com/v1/styles/osm-bright-grey/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - osm-bright-smooth": "https://maps.geoapify.com/v1/styles/osm-bright-smooth/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - klokantech-basic": "https://maps.geoapify.com/v1/styles/klokantech-basic/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - osm-liberty": "https://maps.geoapify.com/v1/styles/osm-liberty/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - maptiler-3d": "https://maps.geoapify.com/v1/styles/maptiler-3d/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - toner": "https://maps.geoapify.com/v1/styles/toner/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - toner-grey": "https://maps.geoapify.com/v1/styles/toner-grey/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - positron": "https://maps.geoapify.com/v1/styles/positron/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - positron-blue": "https://maps.geoapify.com/v1/styles/positron-blue/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - positron-red": "https://maps.geoapify.com/v1/styles/positron-red/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter": "https://maps.geoapify.com/v1/styles/dark-matter/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter-brown": "https://maps.geoapify.com/v1/styles/dark-matter-brown/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter-dark-grey": "https://maps.geoapify.com/v1/styles/dark-matter-dark-grey/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter-dark-purple": "https://maps.geoapify.com/v1/styles/dark-matter-dark-purple/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter-purple-roads": "https://maps.geoapify.com/v1/styles/dark-matter-purple-roads/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter-yellow-roads": "https://maps.geoapify.com/v1/styles/dark-matter-yellow-roads/style.json?apiKey={GEOAPIFY_API_KEY}",
 }
 
 
