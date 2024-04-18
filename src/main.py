@@ -8,14 +8,14 @@ MAPTILER_API_KEY = os.environ.get("MAPTILER_API_KEY")
 STADIA_API_KEY = os.environ.get("STADIA_API_KEY")
 GEOAPIFY_API_KEY = os.environ.get("GEOAPIFY_API_KEY")
 
-if MAPTILER_API_KEY is None:
-    raise ValueError("MAPTILER_API_KEY environment variables must be set")
+if MAPTILER_API_KEY is None or MAPTILER_API_KEY == "":
+    raise ValueError("MAPTILER_API_KEY environment variable must be set")
 
-if STADIA_API_KEY is None:
-    raise ValueError("STADIA_API_KEY environment variables must be set")
+if STADIA_API_KEY is None or STADIA_API_KEY == "":
+    raise ValueError("STADIA_API_KEY environment variable must be set")
 
-if GEOAPIFY_API_KEY is None:
-    raise ValueError("GEOAPIFY_API_KEY environment variables must be set")
+if GEOAPIFY_API_KEY is None or GEOAPIFY_API_KEY == "":
+    raise ValueError("GEOAPIFY_API_KEY environment variable must be set")
 
 STYLES = {
     "MapTiler - backdrop": "https://api.maptiler.com/maps/backdrop/style.json?key={MAPTILER_API_KEY}",
@@ -155,7 +155,7 @@ async def time_style(style_name, style_url):
             await page.wait_for_function("window.loadTime", timeout=30000)
             load_time = int(await page.evaluate("() => { return window.loadTime; }"))
             await page.screenshot(
-                path=f"screenshots/{convert_to_snake_case(style_name)}.png"
+                path=f"output/screenshots/{convert_to_snake_case(style_name)}.png"
             )
             print(f"{style_name}: {load_time}")
 
@@ -185,8 +185,12 @@ async def main():
     for k, v in STYLES.items():
         dataset.append(await time_style(k, v))
 
-    dataset.sort(key=lambda x: x.get("load_time", float("inf")))
-    with open("timing_results.json", "w") as f:
+    dataset.sort(
+        key=lambda x: x.get("load_time", float("inf"))
+        if x.get("load_time") is not None
+        else float("inf")
+    )
+    with open("output/timing_results.json", "w") as f:
         f.write(json.dumps(dataset, indent=4, sort_keys=True))
 
 
