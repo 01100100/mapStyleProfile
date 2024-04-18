@@ -1,6 +1,5 @@
 name: Profile Map Styles
-permissions:
-  id-token: write
+permissions: write-all
 on:
   push:
     branches: ["main"]
