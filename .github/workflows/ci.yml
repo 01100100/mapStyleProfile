@@ -30,6 +30,7 @@ jobs:
           -v ${PWD}/:/output \
           map-style-profiler
       - name: Commit screenshots and timing results
+        uses: actions/checkout@v3
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
