@@ -1,0 +1,86 @@
+name: Profile Map Styles
+
+on:
+  push:
+    branches: ["main"]
+    paths-ignore:
+      - "screenshots/**"
+      - "timing_results.json"
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build-and-run-profiling:
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Build Docker image
+        run: docker build -t map-style-profiler .
+      - name: Run Docker container
+        env:
+          MAPTILER_API_KEY: ${{ secrets.MAPTILER_API_KEY }}
+          STADIA_API_KEY: ${{ secrets.STADIA_API_KEY }}
+          GEOAPIFY_API_KEY: ${{ secrets.GEOAPIFY_API_KEY }}
+        run: |
+          docker run --rm --ipc=host \
+          -e MAPTILER_API_KEY="${{ secrets.MAPTILER_API_KEY }}" \
+          -e STADIA_API_KEY="${{ secrets.STADIA_API_KEY }}" \
+          -e GEOAPIFY_API_KEY="${{ secrets.GEOAPIFY_API_KEY }}" \
+          -v ${PWD}/:/output \
+          map-style-profiler
+      - name: Fetch recent commits
+        run: git fetch --depth=2
+      - name: Check last commit message
+        id: last_commit_check
+        run: |
+          LAST_COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Last commit message: $LAST_COMMIT_MSG"
+          if [[ "$LAST_COMMIT_MSG" == "Add screenshots and timing results" ]]; then
+            echo "::set-output name=skip_commit::true"
+          fi
+
+      - name: Commit screenshots and timing results
+        if: steps.last_commit_check.outputs.skip_commit != 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add screenshots/
+          git add timing_results.json
+          git commit -m "Add screenshots and timing results"
+          git push
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: |
+          cd site
+          npm ci
+      - name: Run webpack
+        run: |
+          cd site
+          npm run build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "site/dist"
+  deploy:
+    environment:
+      name: "Pages Preview"
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build-and-run-profiling
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          preview: "true"
