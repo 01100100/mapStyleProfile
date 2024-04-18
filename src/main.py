@@ -176,7 +176,7 @@ async def time_style(style_name, style_url):
             "style_name": style_name,
             "load_time": load_time,
             "style_url": style_url,
-            "screenshot": f"output/screenshots/{convert_to_snake_case(style_name)}.png",
+            "screenshot": f"screenshots/{convert_to_snake_case(style_name)}.png",
         }
 
 
