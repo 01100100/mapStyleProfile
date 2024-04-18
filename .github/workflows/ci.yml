@@ -1,0 +1,54 @@
+name: Profile Map Styles
+
+on:
+  push:
+    branches: ["main"]
+    paths-ignore:
+      - "screenshots/**"
+      - "timing_results.json"
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Build Docker image
+        run: docker build -t map-style-profiler .
+      - name: Run Docker container
+        env:
+          MAPTILER_API_KEY: ${{ secrets.MAPTILER_API_KEY }}
+          STADIA_API_KEY: ${{ secrets.STADIA_API_KEY }}
+          GEOAPIFY_API_KEY: ${{ secrets.GEOAPIFY_API_KEY }}
+        run: |
+          docker run --rm --ipc=host \
+          -e MAPTILER_API_KEY="${{ secrets.MAPTILER_API_KEY }}" \
+          -e STADIA_API_KEY="${{ secrets.STADIA_API_KEY }}" \
+          -e GEOAPIFY_API_KEY="${{ secrets.GEOAPIFY_API_KEY }}" \
+          -v ${PWD}/:/output \
+          map-style-profiler
+      - name: Commit screenshots and timing results
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add screenshots/
+          git add timing_results.json
+          git commit -m "Add screenshots and timing results" || echo "No changes to commit"
+          git push
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: Install dependencies
+        run: npm ci
+      - name: Run webpack
+        run: npx webpack --config site/webpack.config.js
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "site/dist"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
