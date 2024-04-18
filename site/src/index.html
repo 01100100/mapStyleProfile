@@ -78,7 +78,7 @@
         const loadButton = document.getElementById('loadButton');
 
         loadButton.addEventListener('click', () => {
-            // TODO: validate input 
+            // TODO: validate input using maplibre-gl's validateStyleURL
             startTime = performance.now();
             const prveiousTimingInfo = document.getElementById('timingInfo');
             if (prveiousTimingInfo) {
