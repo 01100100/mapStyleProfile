@@ -1,16 +1,4 @@
 name: Profile Map Styles
-permissions:
-  contents: write
-  deployments: write
-  id-token: write
-  issues: write
-  discussions: write
-  packages: write
-  pages: write
-  pull-requests: write
-  repository-projects: write
-  security-events: write
-  statuses: write
 
 on:
   push:
@@ -68,18 +56,18 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: "site/dist"
-    deploy:
-      environment:
-        name: 'Pages Preview'
-        url: ${{ steps.deployment.outputs.page_url }}
-      needs: build-and-run-profiling
-      permissions:
-        pages: write
-        id-token: write
+  deploy:
+    environment:
+      name: "Pages Preview"
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build-and-run-profiling
+    permissions:
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          preview: 'true'
+          preview: "true"
