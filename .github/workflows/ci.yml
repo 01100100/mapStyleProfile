@@ -1,7 +1,5 @@
 name: Profile Map Styles
 permissions:
-  actions: write
-  checks: write
   contents: write
   deployments: write
   id-token: write
@@ -24,7 +22,7 @@ on:
     branches: ["main"]
 
 jobs:
-  build-and-deploy:
+  build-and-run-profiling:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -70,6 +68,13 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: "site/dist"
+    deploy:
+      needs: build-and-run-profiling
+      permissions:
+        pages: write
+        id-token: write
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
