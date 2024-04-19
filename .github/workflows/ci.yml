@@ -69,6 +69,9 @@ jobs:
         with:
           path: "site/dist"
     deploy:
+      environment:
+        name: 'Pages Preview'
+        url: ${{ steps.deployment.outputs.page_url }}
       needs: build-and-run-profiling
       permissions:
         pages: write
@@ -78,3 +81,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          preview: 'true'
