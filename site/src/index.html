@@ -69,6 +69,7 @@
 <body>
     <div id="map" style="width: 100%; height: 100%;">
         <div class="input-container">
+            // TODO: Prefill this with the map Libra demo world style
             <input type="text" id="styleInput" placeholder="Enter a vector tile style URL">
             <button id="loadButton">Load Map</button>
         </div>
@@ -78,7 +79,7 @@
         const loadButton = document.getElementById('loadButton');
 
         loadButton.addEventListener('click', () => {
-            // TODO: validate input 
+            // TODO: validate input using maplibre-gl's validateStyleURL
             startTime = performance.now();
             const prveiousTimingInfo = document.getElementById('timingInfo');
             if (prveiousTimingInfo) {
