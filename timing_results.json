@@ -1,0 +1,317 @@
+[
+    {
+        "load_time": 443,
+        "screenshot": "screenshots/maplibre_openmaptiles.png",
+        "style_id": "maplibre_openmaptiles",
+        "style_name": "MapLibre - OpenMapTiles",
+        "style_url": "https://demotiles.maplibre.org/styles/osm-bright-gl-style/style.json"
+    },
+    {
+        "load_time": 468,
+        "screenshot": "screenshots/maplibre_world.png",
+        "style_id": "maplibre_world",
+        "style_name": "MapLibre - World",
+        "style_url": "https://demotiles.maplibre.org/style.json"
+    },
+    {
+        "load_time": 975,
+        "screenshot": "screenshots/stadiamaps_stamen_watercolor.png",
+        "style_id": "stadiamaps_stamen_watercolor",
+        "style_name": "StadiaMaps - Stamen Watercolor",
+        "style_url": "https://tiles.stadiamaps.com/styles/stamen_watercolor.json?api_key={STADIA_API_KEY}"
+    },
+    {
+        "load_time": 1057,
+        "screenshot": "screenshots/maptiler_dataviz.png",
+        "style_id": "maptiler_dataviz",
+        "style_name": "Maptiler - dataviz",
+        "style_url": "https://api.maptiler.com/maps/dataviz/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 1122,
+        "screenshot": "screenshots/maptiler_basic.png",
+        "style_id": "maptiler_basic",
+        "style_name": "MapTiler - basic",
+        "style_url": "https://api.maptiler.com/maps/basic/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 1193,
+        "screenshot": "screenshots/stadiamaps_alidade_smooth.png",
+        "style_id": "stadiamaps_alidade_smooth",
+        "style_name": "StadiaMaps - Alidade Smooth",
+        "style_url": "https://tiles.stadiamaps.com/styles/alidade_smooth.json?api_key={STADIA_API_KEY}"
+    },
+    {
+        "load_time": 1205,
+        "screenshot": "screenshots/maptiler_bright.png",
+        "style_id": "maptiler_bright",
+        "style_name": "Maptiler - bright",
+        "style_url": "https://api.maptiler.com/maps/bright/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 1207,
+        "screenshot": "screenshots/stadiamaps_alidade_smooth_dark.png",
+        "style_id": "stadiamaps_alidade_smooth_dark",
+        "style_name": "StadiaMaps - Alidade Smooth Dark",
+        "style_url": "https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json?api_key={STADIA_API_KEY}"
+    },
+    {
+        "load_time": 1236,
+        "screenshot": "screenshots/stadiamaps_stamen_toner.png",
+        "style_id": "stadiamaps_stamen_toner",
+        "style_name": "StadiaMaps - Stamen Toner",
+        "style_url": "https://tiles.stadiamaps.com/styles/stamen_toner.json?api_key={STADIA_API_KEY}"
+    },
+    {
+        "load_time": 1285,
+        "screenshot": "screenshots/maptiler_toner.png",
+        "style_id": "maptiler_toner",
+        "style_name": "Maptiler - toner",
+        "style_url": "https://api.maptiler.com/maps/toner/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 1447,
+        "screenshot": "screenshots/maptiler_streets.png",
+        "style_id": "maptiler_streets",
+        "style_name": "Maptiler - streets",
+        "style_url": "https://api.maptiler.com/maps/streets/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 1456,
+        "screenshot": "screenshots/stadiamaps_stadia_outdoors.png",
+        "style_id": "stadiamaps_stadia_outdoors",
+        "style_name": "StadiaMaps - Stadia Outdoors",
+        "style_url": "https://tiles.stadiamaps.com/styles/outdoors.json?api_key={STADIA_API_KEY}"
+    },
+    {
+        "load_time": 1476,
+        "screenshot": "screenshots/maptiler_satellite.png",
+        "style_id": "maptiler_satellite",
+        "style_name": "Maptiler - satellite",
+        "style_url": "https://api.maptiler.com/maps/satellite/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 1595,
+        "screenshot": "screenshots/stadiamaps_osm_bright.png",
+        "style_id": "stadiamaps_osm_bright",
+        "style_name": "StadiaMaps - OSM Bright",
+        "style_url": "https://tiles.stadiamaps.com/styles/osm_bright.json?api_key={STADIA_API_KEY}"
+    },
+    {
+        "load_time": 1692,
+        "screenshot": "screenshots/maptiler_backdrop.png",
+        "style_id": "maptiler_backdrop",
+        "style_name": "MapTiler - backdrop",
+        "style_url": "https://api.maptiler.com/maps/backdrop/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 1740,
+        "screenshot": "screenshots/geoapify_darkmatteryellowroads.png",
+        "style_id": "geoapify_darkmatteryellowroads",
+        "style_name": "Geoapify - dark-matter-yellow-roads",
+        "style_url": "https://maps.geoapify.com/v1/styles/dark-matter-yellow-roads/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 1762,
+        "screenshot": "screenshots/maptiler_openstreetmap.png",
+        "style_id": "maptiler_openstreetmap",
+        "style_name": "Maptiler - openstreetmap",
+        "style_url": "https://api.maptiler.com/maps/openstreetmap/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 1819,
+        "screenshot": "screenshots/maptiler_topo.png",
+        "style_id": "maptiler_topo",
+        "style_name": "Maptiler - topo",
+        "style_url": "https://api.maptiler.com/maps/topo/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 2003,
+        "screenshot": "screenshots/geoapify_darkmatterdarkgrey.png",
+        "style_id": "geoapify_darkmatterdarkgrey",
+        "style_name": "Geoapify - dark-matter-dark-grey",
+        "style_url": "https://maps.geoapify.com/v1/styles/dark-matter-dark-grey/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2023,
+        "screenshot": "screenshots/maptiler_winter.png",
+        "style_id": "maptiler_winter",
+        "style_name": "Maptiler - winter",
+        "style_url": "https://api.maptiler.com/maps/winter/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 2035,
+        "screenshot": "screenshots/maptiler_ocean.png",
+        "style_id": "maptiler_ocean",
+        "style_name": "Maptiler - ocean",
+        "style_url": "https://api.maptiler.com/maps/ocean/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 2048,
+        "screenshot": "screenshots/geoapify_positronblue.png",
+        "style_id": "geoapify_positronblue",
+        "style_name": "Geoapify - positron-blue",
+        "style_url": "https://maps.geoapify.com/v1/styles/positron-blue/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2064,
+        "screenshot": "screenshots/stadiamaps_stamen_terrain.png",
+        "style_id": "stadiamaps_stamen_terrain",
+        "style_name": "StadiaMaps - Stamen Terrain",
+        "style_url": "https://tiles.stadiamaps.com/styles/stamen_terrain.json?api_key={STADIA_API_KEY}"
+    },
+    {
+        "load_time": 2104,
+        "screenshot": "screenshots/geoapify_osmliberty.png",
+        "style_id": "geoapify_osmliberty",
+        "style_name": "Geoapify - osm-liberty",
+        "style_url": "https://maps.geoapify.com/v1/styles/osm-liberty/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2225,
+        "screenshot": "screenshots/versatiles_neutrino.png",
+        "style_id": "versatiles_neutrino",
+        "style_name": "VersaTiles - Neutrino",
+        "style_url": "https://tiles.versatiles.org/assets/styles/neutrino.json"
+    },
+    {
+        "load_time": 2302,
+        "screenshot": "screenshots/geoapify_maptiler3d.png",
+        "style_id": "geoapify_maptiler3d",
+        "style_name": "Geoapify - maptiler-3d",
+        "style_url": "https://maps.geoapify.com/v1/styles/maptiler-3d/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2332,
+        "screenshot": "screenshots/geoapify_tonergrey.png",
+        "style_id": "geoapify_tonergrey",
+        "style_name": "Geoapify - toner-grey",
+        "style_url": "https://maps.geoapify.com/v1/styles/toner-grey/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2334,
+        "screenshot": "screenshots/maptiler_outdoor.png",
+        "style_id": "maptiler_outdoor",
+        "style_name": "Maptiler - outdoor",
+        "style_url": "https://api.maptiler.com/maps/outdoor/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 2375,
+        "screenshot": "screenshots/geoapify_positron.png",
+        "style_id": "geoapify_positron",
+        "style_name": "Geoapify - positron",
+        "style_url": "https://maps.geoapify.com/v1/styles/positron/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2424,
+        "screenshot": "screenshots/geoapify_darkmatterbrown.png",
+        "style_id": "geoapify_darkmatterbrown",
+        "style_name": "Geoapify - dark-matter-brown",
+        "style_url": "https://maps.geoapify.com/v1/styles/dark-matter-brown/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2453,
+        "screenshot": "screenshots/geoapify_positronred.png",
+        "style_id": "geoapify_positronred",
+        "style_name": "Geoapify - positron-red",
+        "style_url": "https://maps.geoapify.com/v1/styles/positron-red/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2494,
+        "screenshot": "screenshots/geoapify_klokantechbasic.png",
+        "style_id": "geoapify_klokantechbasic",
+        "style_name": "Geoapify - klokantech-basic",
+        "style_url": "https://maps.geoapify.com/v1/styles/klokantech-basic/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2506,
+        "screenshot": "screenshots/versatiles_graybeard.png",
+        "style_id": "versatiles_graybeard",
+        "style_name": "VersaTiles - Graybeard",
+        "style_url": "https://tiles.versatiles.org/assets/styles/graybeard.json"
+    },
+    {
+        "load_time": 2509,
+        "screenshot": "screenshots/versatiles_colorful.png",
+        "style_id": "versatiles_colorful",
+        "style_name": "VersaTiles - Colorful",
+        "style_url": "https://tiles.versatiles.org/assets/styles/colorful.json"
+    },
+    {
+        "load_time": 2546,
+        "screenshot": "screenshots/geoapify_darkmatterdarkpurple.png",
+        "style_id": "geoapify_darkmatterdarkpurple",
+        "style_name": "Geoapify - dark-matter-dark-purple",
+        "style_url": "https://maps.geoapify.com/v1/styles/dark-matter-dark-purple/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2580,
+        "screenshot": "screenshots/geoapify_darkmatterpurpleroads.png",
+        "style_id": "geoapify_darkmatterpurpleroads",
+        "style_name": "Geoapify - dark-matter-purple-roads",
+        "style_url": "https://maps.geoapify.com/v1/styles/dark-matter-purple-roads/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2608,
+        "screenshot": "screenshots/geoapify_darkmatter.png",
+        "style_id": "geoapify_darkmatter",
+        "style_name": "Geoapify - dark-matter",
+        "style_url": "https://maps.geoapify.com/v1/styles/dark-matter/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2630,
+        "screenshot": "screenshots/geoapify_osmcarto.png",
+        "style_id": "geoapify_osmcarto",
+        "style_name": "Geoapify - osm-carto",
+        "style_url": "https://maps.geoapify.com/v1/styles/osm-carto/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2634,
+        "screenshot": "screenshots/maptiler_landscape.png",
+        "style_id": "maptiler_landscape",
+        "style_name": "Maptiler - landscape",
+        "style_url": "https://api.maptiler.com/maps/landscape/style.json?key={MAPTILER_API_KEY}"
+    },
+    {
+        "load_time": 2752,
+        "screenshot": "screenshots/geoapify_osmbrightgrey.png",
+        "style_id": "geoapify_osmbrightgrey",
+        "style_name": "Geoapify - osm-bright-grey",
+        "style_url": "https://maps.geoapify.com/v1/styles/osm-bright-grey/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 2866,
+        "screenshot": "screenshots/geoapify_osmbrightsmooth.png",
+        "style_id": "geoapify_osmbrightsmooth",
+        "style_name": "Geoapify - osm-bright-smooth",
+        "style_url": "https://maps.geoapify.com/v1/styles/osm-bright-smooth/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 3153,
+        "screenshot": "screenshots/maplibre_terrain.png",
+        "style_id": "maplibre_terrain",
+        "style_name": "MapLibre - Terrain",
+        "style_url": "https://demotiles.maplibre.org/styles/osm-bright-gl-terrain/style.json"
+    },
+    {
+        "load_time": 3467,
+        "screenshot": "screenshots/geoapify_toner.png",
+        "style_id": "geoapify_toner",
+        "style_name": "Geoapify - toner",
+        "style_url": "https://maps.geoapify.com/v1/styles/toner/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": 3560,
+        "screenshot": "screenshots/geoapify_osmbright.png",
+        "style_id": "geoapify_osmbright",
+        "style_name": "Geoapify - osm-bright",
+        "style_url": "https://maps.geoapify.com/v1/styles/osm-bright/style.json?apiKey={GEOAPIFY_API_KEY}"
+    },
+    {
+        "load_time": null,
+        "screenshot": "screenshots/stadiamaps_alidade_satellite.png",
+        "style_id": "stadiamaps_alidade_satellite",
+        "style_name": "StadiaMaps - Alidade Satellite",
+        "style_url": "https://tiles.stadiamaps.com/styles/alidade_satellite.json?api_key={STADIA_API_KEY}"
+    }
+]
