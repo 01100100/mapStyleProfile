@@ -1,38 +1,80 @@
 import asyncio
 import os
+import re
+import json
 from playwright.async_api import async_playwright
 
 MAPTILER_API_KEY = os.environ.get("MAPTILER_API_KEY")
 STADIA_API_KEY = os.environ.get("STADIA_API_KEY")
+GEOAPIFY_API_KEY = os.environ.get("GEOAPIFY_API_KEY")
 
-if MAPTILER_API_KEY is None or STADIA_API_KEY is None:
-    raise ValueError(
-        "MAPTILER_API_KEY and STADIA_API_KEY environment variables must be set"
-    )
+if MAPTILER_API_KEY is None or MAPTILER_API_KEY == "":
+    raise ValueError("MAPTILER_API_KEY environment variable must be set")
+
+if STADIA_API_KEY is None or STADIA_API_KEY == "":
+    raise ValueError("STADIA_API_KEY environment variable must be set")
+
+if GEOAPIFY_API_KEY is None or GEOAPIFY_API_KEY == "":
+    raise ValueError("GEOAPIFY_API_KEY environment variable must be set")
 
 STYLES = {
-    "MapTiler - backdrop": f"https://api.maptiler.com/maps/backdrop/style.json?key={MAPTILER_API_KEY}",
-    "MapTiler - basic": f"https://api.maptiler.com/maps/basic/style.json?key={MAPTILER_API_KEY}",
-    "Maptiler - bright": f"https://api.maptiler.com/maps/bright/style.json?key={MAPTILER_API_KEY}",
-    "Maptiler - dataviz": f"https://api.maptiler.com/maps/dataviz/style.json?key={MAPTILER_API_KEY}",
-    "Maptiler - landscape": f"https://api.maptiler.com/maps/landscape/style.json?key={MAPTILER_API_KEY}",
-    "Maptiler - ocean": f"https://api.maptiler.com/maps/ocean/style.json?key={MAPTILER_API_KEY}",
-    "Maptiler - openstreetmap": f"https://api.maptiler.com/maps/openstreetmap/style.json?key={MAPTILER_API_KEY}",
-    "Maptiler - outdoor": f"https://api.maptiler.com/maps/outdoor/style.json?key={MAPTILER_API_KEY}",
-    "Maptiler - satellite": f"https://api.maptiler.com/maps/satellite/style.json?key={MAPTILER_API_KEY}",
-    "Maptiler - streets": f"https://api.maptiler.com/maps/streets/style.json?key={MAPTILER_API_KEY}",
-    "Maptiler - toner": f"https://api.maptiler.com/maps/toner/style.json?key={MAPTILER_API_KEY}",
-    "Maptiler - topo": f"https://api.maptiler.com/maps/topo/style.json?key={MAPTILER_API_KEY}",
-    "Maptiler - winter": f"https://api.maptiler.com/maps/winter/style.json?key={MAPTILER_API_KEY}",
-    "StadiaMaps - Alidade Smooth": f"https://tiles.stadiamaps.com/styles/alidade_smooth.json?api_key={STADIA_API_KEY}",
-    "StadiaMaps - Alidade Smooth Dark": f"https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json?api_key={STADIA_API_KEY}",
-    "StadiaMaps - Alidade Satellite": f"https://tiles.stadiamaps.com/styles/alidade_satellite.json?api_key={STADIA_API_KEY}",
-    "StadiaMaps - Stadia Outdoors": f"https://tiles.stadiamaps.com/styles/outdoors.json?api_key={STADIA_API_KEY}",
-    "StadiaMaps - Stamen Toner": f"https://tiles.stadiamaps.com/styles/stamen_toner.json?api_key={STADIA_API_KEY}",
-    "StadiaMaps - Stamen Terrain": f"https://tiles.stadiamaps.com/styles/stamen_terrain.json?api_key={STADIA_API_KEY}",
-    "StadiaMaps - Stamen Watercolor": f"https://tiles.stadiamaps.com/styles/stamen_watercolor.json?api_key={STADIA_API_KEY}",
-    "StadiaMaps - OSM Bright": f"https://tiles.stadiamaps.com/styles/osm_bright.json?api_key={STADIA_API_KEY}",
+    "MapTiler - backdrop": "https://api.maptiler.com/maps/backdrop/style.json?key={MAPTILER_API_KEY}",
+    "MapTiler - basic": "https://api.maptiler.com/maps/basic/style.json?key={MAPTILER_API_KEY}",
+    "Maptiler - bright": "https://api.maptiler.com/maps/bright/style.json?key={MAPTILER_API_KEY}",
+    "Maptiler - dataviz": "https://api.maptiler.com/maps/dataviz/style.json?key={MAPTILER_API_KEY}",
+    "Maptiler - landscape": "https://api.maptiler.com/maps/landscape/style.json?key={MAPTILER_API_KEY}",
+    "Maptiler - ocean": "https://api.maptiler.com/maps/ocean/style.json?key={MAPTILER_API_KEY}",
+    "Maptiler - openstreetmap": "https://api.maptiler.com/maps/openstreetmap/style.json?key={MAPTILER_API_KEY}",
+    "Maptiler - outdoor": "https://api.maptiler.com/maps/outdoor/style.json?key={MAPTILER_API_KEY}",
+    "Maptiler - satellite": "https://api.maptiler.com/maps/satellite/style.json?key={MAPTILER_API_KEY}",
+    "Maptiler - streets": "https://api.maptiler.com/maps/streets/style.json?key={MAPTILER_API_KEY}",
+    "Maptiler - toner": "https://api.maptiler.com/maps/toner/style.json?key={MAPTILER_API_KEY}",
+    "Maptiler - topo": "https://api.maptiler.com/maps/topo/style.json?key={MAPTILER_API_KEY}",
+    "Maptiler - winter": "https://api.maptiler.com/maps/winter/style.json?key={MAPTILER_API_KEY}",
+    "StadiaMaps - Alidade Smooth": "https://tiles.stadiamaps.com/styles/alidade_smooth.json?api_key={STADIA_API_KEY}",
+    "StadiaMaps - Alidade Smooth Dark": "https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json?api_key={STADIA_API_KEY}",
+    "StadiaMaps - Alidade Satellite": "https://tiles.stadiamaps.com/styles/alidade_satellite.json?api_key={STADIA_API_KEY}",
+    "StadiaMaps - Stadia Outdoors": "https://tiles.stadiamaps.com/styles/outdoors.json?api_key={STADIA_API_KEY}",
+    "StadiaMaps - Stamen Toner": "https://tiles.stadiamaps.com/styles/stamen_toner.json?api_key={STADIA_API_KEY}",
+    "StadiaMaps - Stamen Terrain": "https://tiles.stadiamaps.com/styles/stamen_terrain.json?api_key={STADIA_API_KEY}",
+    "StadiaMaps - Stamen Watercolor": "https://tiles.stadiamaps.com/styles/stamen_watercolor.json?api_key={STADIA_API_KEY}",
+    "StadiaMaps - OSM Bright": "https://tiles.stadiamaps.com/styles/osm_bright.json?api_key={STADIA_API_KEY}",
+    "Geoapify - osm-carto": "https://maps.geoapify.com/v1/styles/osm-carto/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - osm-bright": "https://maps.geoapify.com/v1/styles/osm-bright/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - osm-bright-grey": "https://maps.geoapify.com/v1/styles/osm-bright-grey/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - osm-bright-smooth": "https://maps.geoapify.com/v1/styles/osm-bright-smooth/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - klokantech-basic": "https://maps.geoapify.com/v1/styles/klokantech-basic/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - osm-liberty": "https://maps.geoapify.com/v1/styles/osm-liberty/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - maptiler-3d": "https://maps.geoapify.com/v1/styles/maptiler-3d/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - toner": "https://maps.geoapify.com/v1/styles/toner/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - toner-grey": "https://maps.geoapify.com/v1/styles/toner-grey/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - positron": "https://maps.geoapify.com/v1/styles/positron/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - positron-blue": "https://maps.geoapify.com/v1/styles/positron-blue/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - positron-red": "https://maps.geoapify.com/v1/styles/positron-red/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter": "https://maps.geoapify.com/v1/styles/dark-matter/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter-brown": "https://maps.geoapify.com/v1/styles/dark-matter-brown/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter-dark-grey": "https://maps.geoapify.com/v1/styles/dark-matter-dark-grey/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter-dark-purple": "https://maps.geoapify.com/v1/styles/dark-matter-dark-purple/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter-purple-roads": "https://maps.geoapify.com/v1/styles/dark-matter-purple-roads/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "Geoapify - dark-matter-yellow-roads": "https://maps.geoapify.com/v1/styles/dark-matter-yellow-roads/style.json?apiKey={GEOAPIFY_API_KEY}",
+    "MapLibre - World": "https://demotiles.maplibre.org/style.json",
+    "MapLibre - OpenMapTiles": "https://demotiles.maplibre.org/styles/osm-bright-gl-style/style.json",
+    "MapLibre - Terrain": "https://demotiles.maplibre.org/styles/osm-bright-gl-terrain/style.json",
+    "VersaTiles - Colorful": "https://tiles.versatiles.org/assets/styles/colorful.json",
+    "VersaTiles - Neutrino": "https://tiles.versatiles.org/assets/styles/neutrino.json",
+    "VersaTiles - Graybeard": "https://tiles.versatiles.org/assets/styles/graybeard.json",
 }
+
+
+def format(template):
+    return eval(f"f'{template}'")
+
+
+def convert_to_snake_case(string):
+    string = string.replace("-", "")
+    string = re.sub(" +", "_", string)
+    string = string.lower()
+    return string
 
 
 async def time_style(style_name, style_url):
@@ -70,7 +112,7 @@ async def time_style(style_name, style_url):
             const startTime = performance.now();
             const map = new maplibregl.Map({{
                 container: "map",
-                style: "{style_url}",
+                style: "{format(style_url)}",
                 center: [0, 51.4769], // Greenwich meridian
                 zoom: 10,
                 maxZoom: 18,
@@ -92,7 +134,8 @@ async def time_style(style_name, style_url):
     async with async_playwright() as p:
         browser_type = p.chromium
         browser = await browser_type.launch()
-        page = await browser.new_page()
+        context = await browser.new_context()
+        page = await context.new_page()
 
         # # Enable network interception
         # await page.route("**/*", lambda route: route.continue_())
@@ -113,18 +156,46 @@ async def time_style(style_name, style_url):
         try:
             await page.set_content(html_content)
             await page.wait_for_function("window.loadTime", timeout=30000)
-            load_time = await page.evaluate("() => { return window.loadTime; }")
+            load_time = int(await page.evaluate("() => { return window.loadTime; }"))
+            await page.screenshot(
+                path=f"output/screenshots/{convert_to_snake_case(style_name)}.png"
+            )
             print(f"{style_name}: {load_time}")
 
         except asyncio.TimeoutError:
             print(f"Timeout occurred for {style_name}")
+            load_time = None
 
         except Exception as e:
             print(f"An error occurred for {style_name}: {str(e)}")
+            load_time = None
 
         finally:
+            await context.close()
             await browser.close()
 
+        return {
+            "style_id": convert_to_snake_case(style_name),
+            "style_name": style_name,
+            "load_time": load_time,
+            "style_url": style_url,
+            "screenshot": f"screenshots/{convert_to_snake_case(style_name)}.png",
+        }
 
-for k, v in STYLES.items():
-    asyncio.run(time_style(k, v))
+
+async def main():
+    dataset = []
+    for k, v in STYLES.items():
+        dataset.append(await time_style(k, v))
+
+    dataset.sort(
+        key=lambda x: x.get("load_time", float("inf"))
+        if x.get("load_time") is not None
+        else float("inf")
+    )
+    with open("output/timing_results.json", "w") as f:
+        f.write(json.dumps(dataset, indent=4, sort_keys=True))
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
