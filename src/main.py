@@ -60,6 +60,9 @@ STYLES = {
     "MapLibre - World": "https://demotiles.maplibre.org/style.json",
     "MapLibre - OpenMapTiles": "https://demotiles.maplibre.org/styles/osm-bright-gl-style/style.json",
     "MapLibre - Terrain": "https://demotiles.maplibre.org/styles/osm-bright-gl-terrain/style.json",
+    "VersaTiles - Colorful": "https://tiles.versatiles.org/assets/styles/colorful.json",
+    "VersaTiles - Neutrino": "https://tiles.versatiles.org/assets/styles/neutrino.json",
+    "VersaTiles - Graybeard": "https://tiles.versatiles.org/assets/styles/graybeard.json",
 }
 
 
